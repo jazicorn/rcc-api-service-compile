@@ -12,7 +12,7 @@ public record Task(
     String language,
     Integer level,
     Integer points,
-    List<Instruction<?>> instructions,
+    List<Instruction<?,?>> instructions,
     String category,
     String categorySub,
     List<String> tags,

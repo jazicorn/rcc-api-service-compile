@@ -5,16 +5,17 @@ import java.util.UUID;
 
 import com.recodecamp.api.compile_service.catalog.generate.solution.structure.DataStructure;
 
-public class Solution {
-    UUID id;
-    String regexPattern;
-    String solution;
-    List<String> hints;
-    List<String> conditions;
-    List<String> constraints;
-    DataStructure dataStructure;
+public abstract class Solution {
+    public UUID id;
+    public String regexPattern;
+    public String solution;
+    public List<String> hints;
+    public List<String> conditions;
+    public List<String> constraints;
+    public DataStructure dataStructure;
 
     public Solution(
+        UUID id,
         String regexPattern,
         List<String> hints,
         List<String> conditions,

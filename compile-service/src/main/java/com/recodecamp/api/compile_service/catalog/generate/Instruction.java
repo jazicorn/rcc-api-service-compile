@@ -4,17 +4,19 @@ import java.util.List;
 import java.util.UUID;
 
 import com.recodecamp.api.compile_service.catalog.generate.solution.Solution;
+import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.Boilerplate;
 import com.recodecamp.api.compile_service.catalog.generate.solution.structure.DataStructure;
 
-public class Instruction<T> extends Solution {
+public class Instruction <T,K> extends Solution {
 
     UUID id;
     String statement;
-    T boilerplate;
+    Boilerplate<T,K> boilerplate;
+    List<String> solutions;
 
     public Instruction(
         String statement,
-        T boilerplate,
+        Boilerplate<T,K> boilerplate,
         String regexPattern,
         List<String> hints,
         List<String> conditions,
@@ -26,8 +28,9 @@ public class Instruction<T> extends Solution {
             null,
             null,
             null,
+            null,
             null
         );
-        id = UUID.randomUUID();
+        this.id = super.id;
     };
 };

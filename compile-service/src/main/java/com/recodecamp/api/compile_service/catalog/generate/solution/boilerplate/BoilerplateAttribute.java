@@ -1,9 +1,9 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.code;
-
-import com.recodecamp.api.compile_service.catalog.generate.solution.code.util.AccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.solution.code.util.NonAccessModifier;
+package com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate;
 
 import java.util.Optional;
+
+import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.util.AccessModifier;
+import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.util.NonAccessModifier;
 
 public record BoilerplateAttribute<T>(
     AccessModifier accessModifier,
