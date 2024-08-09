@@ -24,12 +24,11 @@ public class Instruction <T,K> extends Solution {
         DataStructure dataStructure
     ) {
         super(
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            regexPattern,
+            hints,
+            conditions,
+            constraints,
+            dataStructure
         );
         this.id = super.id;
     };
