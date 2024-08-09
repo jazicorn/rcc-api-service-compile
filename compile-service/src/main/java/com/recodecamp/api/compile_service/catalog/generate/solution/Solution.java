@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.DataStructure;
 
-public abstract class Solution {
+public class Solution {
     public UUID id;
     public String regexPattern;
     public String solution;
@@ -15,7 +15,6 @@ public abstract class Solution {
     public DataStructure dataStructure;
 
     public Solution(
-        UUID id,
         String regexPattern,
         List<String> hints,
         List<String> conditions,
