@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.recodecamp.api.compile_service.catalog.generate.solution.Solution;
 import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.Boilerplate;
-import com.recodecamp.api.compile_service.catalog.generate.solution.structure.DataStructure;
+import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.DataStructure;
 
 public class Instruction <T,K> extends Solution {
 

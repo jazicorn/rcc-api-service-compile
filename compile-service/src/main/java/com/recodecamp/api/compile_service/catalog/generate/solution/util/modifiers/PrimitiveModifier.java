@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.util;
+package com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers;
 
 public enum PrimitiveModifier {
     BYTE,

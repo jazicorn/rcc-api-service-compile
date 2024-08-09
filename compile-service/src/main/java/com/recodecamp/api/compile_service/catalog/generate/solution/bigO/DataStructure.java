@@ -1,9 +1,13 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.structure;
+package com.recodecamp.api.compile_service.catalog.generate.solution.bigO;
 
 import java.util.List;
 import java.util.UUID;
 
 import com.recodecamp.api.compile_service.catalog.util.Documentation;
+
+import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.complexity.Complexity;
+import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.complexity.ComplexityAction;
+import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.complexity.ComplexityRating;
 
 public record DataStructure(
     UUID id,

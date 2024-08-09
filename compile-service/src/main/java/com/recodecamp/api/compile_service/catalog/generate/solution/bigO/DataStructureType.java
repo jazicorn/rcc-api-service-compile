@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.structure;
+package com.recodecamp.api.compile_service.catalog.generate.solution.bigO;
 
 public enum DataStructureType {
     INTEGER,
