@@ -2,19 +2,19 @@ package com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate
 
 import java.util.List;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.util.ClassType;
+import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.util.ObjectClassType;
 
 public class Boilerplate <T,K> {
 
     Boolean filePublic;
-    ClassType fileType;
+    ObjectClassType fileType;
     String fileName;
     List<T> boilerplateObjects;
     List<K> solvedObjects;
 
     public Boilerplate(
         Boolean filePublic,
-        ClassType fileType, 
+        ObjectClassType fileType, 
         String fileName,
         List<T> boilerplate,
         List<K> solved
