@@ -1,6 +1,6 @@
 package com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers;
 
-public enum PrimitiveModifier {
+public enum PrimitiveDataTypeModifier {
     BYTE,
     SHORT,
     INT,
