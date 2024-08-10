@@ -37,7 +37,8 @@ public abstract class ObjectModifier {
         } else {
 
             // convert string to arr and remove nulls
-            String modifiers = String.format("%s %s %s %s %s", accessModifier, nonAccessModifier, primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectDataTypeModifier);
+            String modifiers = String.format("%s %s %s %s %s", accessModifier, nonAccessModifier,
+                    primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectDataTypeModifier);
 
             // convert string to arr and remove null
             String[] arr = Arrays.stream(modifiers
@@ -48,7 +49,11 @@ public abstract class ObjectModifier {
             return String.join(" ", arr);
         }
     }
-    
+
+    public Boolean isEmpty() {
+        return toString().trim().isEmpty();
+    };
+
     public abstract void isModifierValid();
 
 }
