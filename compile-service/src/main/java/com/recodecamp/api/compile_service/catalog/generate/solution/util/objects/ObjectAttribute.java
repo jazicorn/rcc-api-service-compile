@@ -1,19 +1,113 @@
 package com.recodecamp.api.compile_service.catalog.generate.solution.util.objects;
 
-import java.util.Optional;
+import com.recodecamp.api.compile_service.catalog.generate.solution.util.helpers.AttributeType;
+import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.Modifier;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.AccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.NonAccessModifier;
+import lombok.Getter;
+import lombok.Setter;
 
-public record ObjectAttribute<T>(
-    AccessModifier accessModifier,
-    NonAccessModifier nonAccessModifier,
-    Optional<T> objectModifier,
-    String name
-) {
-    public ObjectAttribute {
-        if (objectModifier != null || nonAccessModifier != null) {
-            throw new IllegalArgumentException("objectModifier or nonAccessModifer must have NULL value");
+@Getter
+@Setter
+public class ObjectAttribute extends ObjectModifier {
+    
+    AttributeType attrType;
+    String attrName;
+    String attrValue;
+ 
+    public ObjectAttribute(
+        AttributeType attributeType,
+        String attributeName,
+        String attributeValue
+    ) {
+        super(
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+        this.attrType = attributeType;
+        this.attrName = attributeName;
+        this.attrValue = attributeValue;
+
+        isModifierValid();
+    };
+
+    public ObjectAttribute(
+        AttributeType attributeType,
+        String attributeName,
+        String attributeValue,
+        Modifier modifiers
+    ) {
+        super(
+            modifiers.accessModifier(),
+            modifiers.nonAccessModifier(),
+            modifiers.primitiveDataTypeModifier(),
+            modifiers.nonPrimitiveDataTypeModifier(),
+            modifiers.objectDataTypeModifier()
+        );
+        this.attrType = attributeType;
+        this.attrName = attributeName;
+        this.attrValue = attributeValue;
+
+        isModifierValid();
+    };
+    
+    public String attrDeclare() {
+        return String.format("%s %s", super.toString(), attrName).trim();
+    };
+
+    public String attrDeclareValue() {
+        return String.format("%s = %s", attrName, attrValue);
+    };
+
+    public String thisSyntax() {
+        return String.format("this.%s = %s", attrName, attrValue);
+    };
+    
+    @Override
+    public String toString() {
+        if (null != attrType) {
+            switch (attrType) {
+                case DECLAREATTRIBUTE -> {
+                    return "";
+                }
+                case DECLAREATTRIBUTEVALUE -> {
+                    return "";
+                }
+                case PARAMETER-> {
+                    return "";
+                }
+                case INITIALVALUE -> {
+                    return "";
+                }
+                case THISINITIALVALUE -> {
+                    return "";
+                }
+                case THISINITIALVALUENOPARAMETER -> {
+                    return "";
+                }
+                default -> {
+                    return "";
+                }
+            } 
+        } {
+            throw new NullPointerException(
+                "attrType CANNOT be NULL"
+            );
         }
-    }
+    };
+
+    @Override
+    public final void isModifierValid() {
+        if (super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) {
+            throw new IllegalArgumentException(
+                    "primitiveModifierReturnValue or nonPrimitiveModifierReturnValue must be NULL");
+        }
+        
+        if ((super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) && super.objectDataTypeModifier != null) {
+            throw new IllegalArgumentException(
+                    "primitiveModifierReturnValue AND nonPrimitiveModifierReturnValue must be NULL if using objectDataTypeModifier");
+        }
+    };
 };
