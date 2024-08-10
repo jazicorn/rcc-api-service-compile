@@ -3,7 +3,7 @@ package com.recodecamp.api.compile_service.catalog.generate.solution;
 import java.util.List;
 import java.util.UUID;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.DataStructure;
+import com.recodecamp.api.compile_service.catalog.generate.bigO.DataStructure;
 
 public class Solution {
     public UUID id;

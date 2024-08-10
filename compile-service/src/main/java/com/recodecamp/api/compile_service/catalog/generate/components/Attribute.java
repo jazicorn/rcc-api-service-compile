@@ -1,43 +1,34 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.util.objects;
+package com.recodecamp.api.compile_service.catalog.generate.components;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.helpers.AttributeType;
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.Modifier;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.AttributeType;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.objects.ObjectAttribute;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.objects.ObjectModifier;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ObjectAttribute extends ObjectModifier {
+public class Attribute extends Modifier {
     
     AttributeType attrType;
     String attrName;
     String attrValue;
  
-    public ObjectAttribute(
-        AttributeType attributeType,
-        String attributeName,
-        String attributeValue
+    public Attribute(
+        ObjectAttribute attr
     ) {
-        super(
-            null,
-            null,
-            null,
-            null,
-            null
-        );
-        this.attrType = attributeType;
-        this.attrName = attributeName;
-        this.attrValue = attributeValue;
+        super();
+        this.attrType = attr.attributeType();
+        this.attrName = attr.attributeName();
+        this.attrValue = attr.attributeValue();
 
         isModifierValid();
     };
 
-    public ObjectAttribute(
-        AttributeType attributeType,
-        String attributeName,
-        String attributeValue,
-        Modifier modifiers
+    public Attribute(
+        ObjectAttribute attr,
+        ObjectModifier modifiers
     ) {
         super(
             modifiers.accessModifier(),
@@ -46,9 +37,9 @@ public class ObjectAttribute extends ObjectModifier {
             modifiers.nonPrimitiveDataTypeModifier(),
             modifiers.objectDataTypeModifier()
         );
-        this.attrType = attributeType;
-        this.attrName = attributeName;
-        this.attrValue = attributeValue;
+        this.attrType = attr.attributeType();
+        this.attrName = attr.attributeName();
+        this.attrValue = attr.attributeValue();
 
         isModifierValid();
     };

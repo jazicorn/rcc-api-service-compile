@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.bigO.complexity;
+package com.recodecamp.api.compile_service.catalog.generate.bigO.complexity;
 
 public enum Complexity {
     SPEED1("O(1)"),

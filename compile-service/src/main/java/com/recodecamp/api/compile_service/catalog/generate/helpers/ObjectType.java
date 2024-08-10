@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.util.helpers;
+package com.recodecamp.api.compile_service.catalog.generate.helpers;
 
 public enum ObjectType {
     CLASS,

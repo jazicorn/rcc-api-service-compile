@@ -1,25 +1,25 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.util.objects;
+package com.recodecamp.api.compile_service.catalog.generate.components;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.AccessModifier;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.NonAccessModifier;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.NonPrimitiveDataTypeModifier;
+import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.PrimitiveDataTypeModifier;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.AccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.NonAccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.NonPrimitiveDataTypeModifier;
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.modifiers.PrimitiveDataTypeModifier;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class ObjectModifier {
+public abstract class Modifier {
 
     public AccessModifier accessModifier;
     public NonAccessModifier nonAccessModifier;
@@ -30,9 +30,9 @@ public abstract class ObjectModifier {
     @Override
     public String toString() {
 
-        List<Field> getModifiers = Arrays.asList(ObjectModifier.class.getDeclaredFields());
+        List<Field> getModifiers = Arrays.asList(Modifier.class.getDeclaredFields());
 
-        if (getModifiers.containsAll(null)) {
+        if (getModifiers.isEmpty() || getModifiers.containsAll(null))  {
             return "";
         } else {
 

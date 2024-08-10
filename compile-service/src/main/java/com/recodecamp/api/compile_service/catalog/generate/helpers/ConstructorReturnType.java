@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.solution.util.objects;
+package com.recodecamp.api.compile_service.catalog.generate.helpers;
 
 public record ConstructorReturnType(
     Boolean current,
