@@ -2,7 +2,7 @@ package com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate
 
 import java.util.List;
 
-import com.recodecamp.api.compile_service.catalog.generate.solution.util.objects.ObjectClassType;
+import com.recodecamp.api.compile_service.catalog.generate.solution.util.helpers.ObjectClassType;
 
 public class Boilerplate<T, K> {
     String fileName; 
