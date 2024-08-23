@@ -3,8 +3,8 @@ package com.recodecamp.api.compile_service.catalog.generate;
 import java.util.List;
 import java.util.UUID;
 
-import com.recodecamp.api.compile_service.catalog.generate.bigO.DataStructure;
 import com.recodecamp.api.compile_service.catalog.generate.solution.Solution;
+import com.recodecamp.api.compile_service.catalog.generate.solution.bigO.DataStructure;
 import com.recodecamp.api.compile_service.catalog.generate.solution.boilerplate.Boilerplate;
 
 public class Instruction <T,K> extends Solution {

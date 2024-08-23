@@ -1,19 +1,19 @@
-package com.recodecamp.api.compile_service.catalog.generate.components;
+package com.recodecamp.api.compile_service.catalog.generate.components.modifier;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.AccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.NonAccessModifier;
-import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.NonPrimitiveDataTypeModifier;
-import com.recodecamp.api.compile_service.catalog.generate.helpers.modifiers.PrimitiveDataTypeModifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.AccessModifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.NonAccessModifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.NonPrimitiveDataTypeModifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
@@ -36,7 +36,7 @@ public abstract class Modifier {
             return "";
         } else {
 
-            // convert string to arr and remove nulls
+            // convert attributes to string
             String modifiers = String.format("%s %s %s %s %s", accessModifier, nonAccessModifier,
                     primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectDataTypeModifier);
 

@@ -1,8 +1,8 @@
 package com.recodecamp.api.compile_service.catalog.generate.components;
 
-import com.recodecamp.api.compile_service.catalog.generate.helpers.AttributeType;
-import com.recodecamp.api.compile_service.catalog.generate.helpers.objects.ObjectAttribute;
-import com.recodecamp.api.compile_service.catalog.generate.helpers.objects.ObjectModifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.Modifier;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.objects.ObjectAttribute;
+import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.objects.ObjectModifier;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -58,7 +58,7 @@ public class Attribute extends Modifier {
     
     @Override
     public String toString() {
-        if (null != attrType) {
+        if (attrType != null) {
             switch (attrType) {
                 case DECLAREATTRIBUTE -> {
                     return "";
