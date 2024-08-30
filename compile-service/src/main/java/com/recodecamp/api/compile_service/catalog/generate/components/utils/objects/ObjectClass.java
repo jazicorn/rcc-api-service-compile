@@ -1,11 +1,11 @@
-package com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.objects;
+package com.recodecamp.api.compile_service.catalog.generate.components.utils.objects;
 
 import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.AccessModifier;
 import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.NonAccessModifier;
 
-public record ObjectMethod(
+public record ObjectClass(
     AccessModifier accessModifier,
     NonAccessModifier nonAccessModifier,
-    String returnType
+    String name
 ) {
 };
