@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.components;
+package com.recodecamp.api.compile_service.catalog.generate.components.attributes;
 
 import com.recodecamp.api.compile_service.catalog.generate.components.modifier.Modifier;
 import com.recodecamp.api.compile_service.catalog.generate.components.modifier.helpers.objects.ObjectAttribute;

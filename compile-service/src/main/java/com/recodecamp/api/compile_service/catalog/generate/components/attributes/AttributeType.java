@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service.catalog.generate.components;
+package com.recodecamp.api.compile_service.catalog.generate.components.attributes;
 
 public enum AttributeType {
     DECLAREATTRIBUTE,
