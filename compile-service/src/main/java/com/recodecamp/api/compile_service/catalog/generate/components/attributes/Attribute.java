@@ -35,7 +35,7 @@ public class Attribute extends Modifier {
             modifiers.nonAccessModifier(),
             modifiers.primitiveDataTypeModifier(),
             modifiers.nonPrimitiveDataTypeModifier(),
-            modifiers.objectDataTypeModifier()
+            modifiers.objectModifier()
         );
         this.attrType = attr.attributeType();
         this.attrName = attr.attributeName();

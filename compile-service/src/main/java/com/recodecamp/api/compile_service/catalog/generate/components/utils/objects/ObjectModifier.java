@@ -10,6 +10,6 @@ public record ObjectModifier(
     NonAccessModifier nonAccessModifier,
     PrimitiveDataTypeModifier primitiveDataTypeModifier,
     NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier,
-    String objectDataTypeModifier
+    String objectModifier
 ) {
 }
