@@ -25,7 +25,7 @@ public abstract class Modifier {
     public NonAccessModifier nonAccessModifier;
     public PrimitiveDataTypeModifier primitiveDataTypeModifier;
     public NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier;
-    public String objectDataTypeModifier;
+    public String objectModifier;
 
     @Override
     public String toString() {
@@ -38,7 +38,7 @@ public abstract class Modifier {
 
             // convert attributes to string
             String modifiers = String.format("%s %s %s %s %s", accessModifier, nonAccessModifier,
-                    primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectDataTypeModifier);
+                    primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectModifier);
 
             // convert string to arr and remove null
             String[] arr = Arrays.stream(modifiers

@@ -28,14 +28,14 @@ public class Attribute extends Modifier {
 
     public Attribute(
         ObjectAttribute attr,
-        ObjectModifier modifiers
+        ObjectModifier modifier
     ) {
         super(
-            modifiers.accessModifier(),
-            modifiers.nonAccessModifier(),
-            modifiers.primitiveDataTypeModifier(),
-            modifiers.nonPrimitiveDataTypeModifier(),
-            modifiers.objectModifier()
+            modifier.accessModifier(),
+            modifier.nonAccessModifier(),
+            modifier.primitiveDataTypeModifier(),
+            modifier.nonPrimitiveDataTypeModifier(),
+            modifier.objectModifier()
         );
         this.attrType = attr.attributeType();
         this.attrName = attr.attributeName();
@@ -96,7 +96,7 @@ public class Attribute extends Modifier {
                     "primitiveModifierReturnValue or nonPrimitiveModifierReturnValue must be NULL");
         }
         
-        if ((super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) && super.objectDataTypeModifier != null) {
+        if ((super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) && super.objectModifier != null) {
             throw new IllegalArgumentException(
                     "primitiveModifierReturnValue AND nonPrimitiveModifierReturnValue must be NULL if using objectDataTypeModifier");
         }
