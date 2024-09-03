@@ -2,7 +2,6 @@ package api.recodecamp.compile_service.catalog.generate.components.attributes;
 
 import api.recodecamp.compile_service.catalog.generate.components.modifier.Modifier;
 import api.recodecamp.compile_service.catalog.generate.components.modifier.ObjectModifier;
-import api.recodecamp.compile_service.catalog.generate.components.utils.objects.ObjectAttribute;
 import lombok.Getter;
 import lombok.Setter;
 
