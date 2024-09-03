@@ -1,4 +1,4 @@
-package api.recodecamp.compile_service.catalog.generate.components.utils.objects;
+package api.recodecamp.compile_service.catalog.generate.components.modifier;
 
 import api.recodecamp.compile_service.catalog.generate.components.modifier.helpers.AccessModifier;
 import api.recodecamp.compile_service.catalog.generate.components.modifier.helpers.NonAccessModifier;
