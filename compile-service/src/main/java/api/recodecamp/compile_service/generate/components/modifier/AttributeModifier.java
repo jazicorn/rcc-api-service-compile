@@ -18,6 +18,7 @@ public class AttributeModifier<T,K> extends Modifier<T,K> {
         NonAccessModifier nonAccessModifier,
         PrimitiveDataTypeModifier primitiveDataTypeModifier,
         NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier,
+        NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifierBrackets,
         String objectModifier
     ) {
         super(
@@ -25,6 +26,7 @@ public class AttributeModifier<T,K> extends Modifier<T,K> {
             nonAccessModifier,
             primitiveDataTypeModifier,
             nonPrimitiveDataTypeModifier,
+            nonPrimitiveDataTypeModifierBrackets,
             objectModifier
         );
     }

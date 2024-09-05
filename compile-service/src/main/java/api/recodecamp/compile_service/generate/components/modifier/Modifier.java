@@ -10,6 +10,7 @@ import api.recodecamp.compile_service.generate.components.modifier.helpers.Acces
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonAccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonPrimitiveDataTypeModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
+
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,8 @@ public abstract class Modifier<T,K> {
     public NonAccessModifier nonAccessModifier;
     public PrimitiveDataTypeModifier primitiveDataTypeModifier;
     public NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier;
-    public String objectModifier;
+    public NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifierBrackets;
+    public String objectDataTypeModifier;
 
     public List<Field> modifiers() {
         return Arrays.asList(Modifier.class.getDeclaredFields());
@@ -35,10 +37,17 @@ public abstract class Modifier<T,K> {
         return (modifiers().isEmpty() || modifiers().containsAll(null));
     };
     
+    public String nonPrimitiveDataTypeModifier() {
+        String formatted = nonPrimitiveDataTypeModifierBrackets == null ? String.format("%s", nonPrimitiveDataTypeModifier) : 
+        String.format("%s<%s>", nonPrimitiveDataTypeModifier, nonPrimitiveDataTypeModifierBrackets);
+        
+        return formatted;
+    };
+
     public String modifier() {
         // convert attributes to string
         String modifiers = String.format("%s %s %s %s %s", accessModifier, nonAccessModifier,
-                primitiveDataTypeModifier, nonPrimitiveDataTypeModifier, objectModifier);
+                primitiveDataTypeModifier, nonPrimitiveDataTypeModifier(), objectDataTypeModifier);
 
         // convert string to arr and remove null
         String[] arr = Arrays.stream(modifiers
