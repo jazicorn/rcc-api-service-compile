@@ -1,4 +1,4 @@
-package com.recodecamp.api.compile_service;
+package api.recodecamp.compile_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
