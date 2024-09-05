@@ -1,57 +1,50 @@
 package api.recodecamp.compile_service.catalog.generate.components.attributes;
 
-import api.recodecamp.compile_service.catalog.generate.components.modifier.Modifier;
-import api.recodecamp.compile_service.catalog.generate.components.modifier.ObjectModifier;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Optional;
 
-@Getter
-@Setter
-public class Attribute extends Modifier {
+import api.recodecamp.compile_service.catalog.generate.components.modifier.AttributeModifier;
+
+public class Attribute<T,K> {
     
+    AttributeModifier<T,K> modifier;
     AttributeType attrType;
     String attrName;
     String attrValue;
  
     public Attribute(
-        ObjectAttribute attr
+        AttributeModifier<T,K> modifier,
+        AttributeType attrType,
+        String attrName,
+        String attrValue
+        
     ) {
-        super();
-        this.attrType = attr.attributeType();
-        this.attrName = attr.attributeName();
-        this.attrValue = attr.attributeValue();
+        this.modifier = modifier;
+        this.attrType = attrType;
+        this.attrName = attrName;
+        this.attrValue = attrValue;
 
-        isModifierValid();
-    };
-
-    public Attribute(
-        ObjectAttribute attr,
-        ObjectModifier modifier
-    ) {
-        super(
-            modifier.accessModifier(),
-            modifier.nonAccessModifier(),
-            modifier.primitiveDataTypeModifier(),
-            modifier.nonPrimitiveDataTypeModifier(),
-            modifier.objectModifier()
-        );
-        this.attrType = attr.attributeType();
-        this.attrName = attr.attributeName();
-        this.attrValue = attr.attributeValue();
-
-        isModifierValid();
     };
     
-    public String attrDeclare() {
-        return String.format("%s %s", super.toString(), attrName).trim();
+    public Attribute(
+        AttributeType attrType,
+        String attrName,
+        String attrValue
+    ) {
+        this.attrType = attrType;
+        this.attrName = attrName;
+        this.attrValue = attrValue;
     };
 
-    public String attrDeclareValue() {
-        return String.format("%s = %s", attrName, attrValue);
+    public Optional<String> attrDeclare() {
+        return Optional.ofNullable(String.format("%s %s", modifier.toString(), attrName).trim());
     };
 
-    public String thisSyntax() {
-        return String.format("this.%s = %s", attrName, attrValue);
+    public Optional<String> attrDeclareValue() {
+        return Optional.ofNullable(String.format("%s = %s", attrName, attrValue));
+    };
+
+    public Optional<String> thisSyntax() {
+        return Optional.ofNullable(String.format("this.%s = %s", attrName, attrValue));
     };
     
     @Override
@@ -84,19 +77,6 @@ public class Attribute extends Modifier {
             throw new NullPointerException(
                 "attrType CANNOT be NULL"
             );
-        }
-    };
-
-    @Override
-    public final void isModifierValid() {
-        if (super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) {
-            throw new IllegalArgumentException(
-                    "primitiveModifierReturnValue or nonPrimitiveModifierReturnValue must be NULL");
-        }
-        
-        if ((super.primitiveDataTypeModifier != null || super.nonPrimitiveDataTypeModifier != null) && super.objectModifier != null) {
-            throw new IllegalArgumentException(
-                    "primitiveModifierReturnValue AND nonPrimitiveModifierReturnValue must be NULL if using objectDataTypeModifier");
         }
     };
 };
