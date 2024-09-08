@@ -58,6 +58,7 @@ public final class EnumUtilities {
     public static String fStr(Object obj) {
         String str = enumToStr(obj);
         String ft = String.valueOf(str.charAt(0)).concat(str.substring(1).toLowerCase());
-        return ft;
+
+        return str.length() == 1 ? str.toUpperCase() : ft;
     };
 }
