@@ -6,9 +6,9 @@ package api.recodecamp.compile_service.util;
 * @author Jasmine Anderson
 * @version 1.0
 */
-public final class EnumUtilities {
+public final class EnumUtil {
 
-    private EnumUtilities() {
+    private EnumUtil() {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     };
 
@@ -39,7 +39,7 @@ public final class EnumUtilities {
      * @throws IllegalArgumentException exception if obj parameter is not an Enum
      * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html">Class Enum</a>
      */
-    public static String enumToStr(Object obj) {
+    public static String enumToStr(Object obj) throws IllegalArgumentException {
         if(isNullOrEmpty(obj)) {
             throw new NullPointerException("Parameter cannot be null");
         } else if (checkIfEnum(obj)) {
