@@ -2,21 +2,21 @@ package api.recodecamp.compile_service.generate.components.modifier;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import api.recodecamp.compile_service.generate.components.modifier.helpers.AccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonAccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
-
-import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 
 /**
 * Modifier class generates modifier for objects
@@ -24,13 +24,13 @@ import lombok.Setter;
 * @author Jasmine Anderson
 * @version 1.0
 */
-public abstract class Modifier<T,K> {
+public abstract class Modifier<T> {
 
     public AccessModifier accessModifier;
     public NonAccessModifier nonAccessModifier;
     public PrimitiveDataTypeModifier primitiveDataTypeModifier;
     public T nonPrimitiveDataTypeModifier;
-    public K dataTypeModifierDiamond;
+    public Boolean nonPrimitiveDataTypeModifierDiamond;
     
     public Modifier(
         AccessModifier accessModifier,
@@ -46,23 +46,43 @@ public abstract class Modifier<T,K> {
         AccessModifier accessModifier,
         NonAccessModifier nonAccessModifier,
         T nonPrimitiveDataTypeModifier,
-        K dataTypeModifierDiamond
+        Boolean nonPrimitiveDataTypeModifierDiamond
     ) {
         this.accessModifier = accessModifier;
         this.nonAccessModifier = nonAccessModifier;
         this.nonPrimitiveDataTypeModifier = nonPrimitiveDataTypeModifier;
-        this.dataTypeModifierDiamond = dataTypeModifierDiamond;
+        this.nonPrimitiveDataTypeModifierDiamond = nonPrimitiveDataTypeModifierDiamond;
+        isDiamondPrimitive();
+    };
+
+    /**
+     * Checks if diamond modifier is a valid type
+     * @see Arrays#stream()
+     * @throws IllegalArgumentException exception thrown if diamond modifier is primitive data type
+     */
+    private void isDiamondPrimitive() {
+        if (nonPrimitiveDataTypeModifierDiamond) {
+             boolean exists = Arrays.stream(PrimitiveDataTypeModifier.values())
+                .anyMatch(type -> type.name().equals(nonPrimitiveDataTypeModifier));
+            if (exists) {
+                throw new IllegalArgumentException("Primitive data types not allowed for diamond operator");
+            }
+        }
     };
 
     /**
      * List format of attribute value for Modifier class
      * @return List of Modifier attribute values
      * @see Class#getDeclaredFields() Class.getDeclaredFields()
-     * @see Arrays#asList(T...) Arrays.asList()
+     * @see Arrays#asList() Arrays.asList()
      * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a> 
      */
     public List<Field> fields() {
-        return Arrays.asList(Modifier.class.getDeclaredFields());
+        List<Field> fields = new ArrayList<>(List.of(Modifier.class.getDeclaredFields()));
+        if (nonPrimitiveDataTypeModifierDiamond) {
+            fields.remove(fields.size() - 1);
+        }
+        return fields;
     };
 
     /**
@@ -98,7 +118,9 @@ public abstract class Modifier<T,K> {
 
     public abstract Boolean isValid();
 
-    public abstract Object accessType();
+    public abstract String fAccessType();
 
-    public abstract Object dataType();
+    public abstract Optional<String> fDataType();
+
+    public abstract Optional<String> fDataTypeDiamond();
 }
