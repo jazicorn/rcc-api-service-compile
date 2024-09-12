@@ -48,17 +48,4 @@ public final class EnumUtil {
             throw new IllegalArgumentException(String.format("Parameter must be an Enum: %s", obj));
         }
     };
-
-    /**
-     * Formats object to return String Lowercase with first letter Uppercase 
-     * @param obj parameter value to be formatted
-     * @return Returns String that has been formatted
-     * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">Class String</a>
-     */
-    public static String fStr(Object obj) {
-        String str = enumToStr(obj);
-        String ft = String.valueOf(str.charAt(0)).concat(str.substring(1).toLowerCase());
-
-        return str.length() == 1 ? str.toUpperCase() : ft;
-    };
 }
