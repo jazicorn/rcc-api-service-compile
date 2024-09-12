@@ -4,45 +4,64 @@ import java.util.Optional;
 
 import api.recodecamp.compile_service.generate.components.modifier.helpers.AccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonAccessModifier;
-import api.recodecamp.compile_service.generate.components.modifier.helpers.NonPrimitiveDataTypeModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
+import api.recodecamp.compile_service.util.EnumUtil;
+import api.recodecamp.compile_service.util.StrUtil;
 
-public class AttributeModifier<T,K> extends Modifier<T,K> {
-    
-    public AttributeModifier() {
-        super();
-    }
+public class AttributeModifier<T> extends Modifier<T> {
 
     public AttributeModifier(
         AccessModifier accessModifier,
         NonAccessModifier nonAccessModifier,
-        PrimitiveDataTypeModifier primitiveDataTypeModifier,
-        NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier,
-        NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifierBrackets,
-        String objectModifier
+        PrimitiveDataTypeModifier primitiveDataTypeModifier
     ) {
         super(
             accessModifier,
             nonAccessModifier,
-            primitiveDataTypeModifier,
-            nonPrimitiveDataTypeModifier,
-            nonPrimitiveDataTypeModifierBrackets,
-            objectModifier
+            primitiveDataTypeModifier
         );
-    }
+    };
+
+    public AttributeModifier(
+        AccessModifier accessModifier,
+        NonAccessModifier nonAccessModifier,
+        T nonPrimitiveDataTypeModifier,
+        Boolean nonPrimitiveDataTypeModifierDiamond
+    ) {
+        super(
+            accessModifier,
+            nonAccessModifier,
+            nonPrimitiveDataTypeModifier,
+            nonPrimitiveDataTypeModifierDiamond
+        );
+    };
 
     @Override
     public Boolean isValid() {
-        throw new UnsupportedOperationException("Unimplemented method 'isValid'");
-    }
+        return !super.isEmpty();
+    };
 
     @Override
-    public Optional<T> accessType() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public String fAccessType() {
+        String access = EnumUtil.enumToStr(accessModifier);
+        return nonAccessModifier == null ? access : access.concat(" ").concat(EnumUtil.enumToStr(nonAccessModifier));
+    };
 
     @Override
-    public Optional<K> dataType() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Optional<String> fDataType() {
+        String ft;
+        if(nonPrimitiveDataTypeModifier instanceof Enum) {
+            ft = StrUtil.fStrTitleCase(EnumUtil.enumToStr(nonPrimitiveDataTypeModifier));
+        } else {
+            ft = StrUtil.fStrTitleCase((String) nonPrimitiveDataTypeModifier);
+        }
+        
+        return Optional.ofNullable(ft);
+    };
+
+    @Override
+    public Optional<String> fDataTypeDiamond() {
+        String ft = String.format("<%s>", fDataType());
+        return Optional.ofNullable(ft);
     }
 }
