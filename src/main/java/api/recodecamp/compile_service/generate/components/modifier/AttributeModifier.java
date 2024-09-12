@@ -4,11 +4,12 @@ import java.util.Optional;
 
 import api.recodecamp.compile_service.generate.components.modifier.helpers.AccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonAccessModifier;
+import api.recodecamp.compile_service.generate.components.modifier.helpers.NonPrimitiveDataTypeModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
 import api.recodecamp.compile_service.util.EnumUtil;
 import api.recodecamp.compile_service.util.StrUtil;
 
-public class AttributeModifier<T> extends Modifier<T> {
+public class AttributeModifier extends Modifier {
 
     public AttributeModifier(
         AccessModifier accessModifier,
@@ -25,7 +26,21 @@ public class AttributeModifier<T> extends Modifier<T> {
     public AttributeModifier(
         AccessModifier accessModifier,
         NonAccessModifier nonAccessModifier,
-        T nonPrimitiveDataTypeModifier,
+        NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier,
+        Boolean nonPrimitiveDataTypeModifierDiamond
+    ) {
+        super(
+            accessModifier,
+            nonAccessModifier,
+            nonPrimitiveDataTypeModifier,
+            nonPrimitiveDataTypeModifierDiamond
+        );
+    };
+
+    public AttributeModifier(
+        AccessModifier accessModifier,
+        NonAccessModifier nonAccessModifier,
+        String nonPrimitiveDataTypeModifier,
         Boolean nonPrimitiveDataTypeModifierDiamond
     ) {
         super(

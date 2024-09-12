@@ -4,15 +4,15 @@ import java.util.Optional;
 
 import api.recodecamp.compile_service.generate.components.modifier.AttributeModifier;
 
-public class Attribute<T,K> {
+public class Attribute {
     
-    AttributeModifier<T,K> modifier;
+    AttributeModifier modifier;
     AttributeType attrType;
     String attrName;
     String attrValue;
  
     public Attribute(
-        AttributeModifier<T,K> modifier,
+        AttributeModifier modifier,
         AttributeType attrType,
         String attrName,
         String attrValue

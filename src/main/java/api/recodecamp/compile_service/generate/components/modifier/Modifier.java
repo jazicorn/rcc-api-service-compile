@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import api.recodecamp.compile_service.generate.components.modifier.helpers.AccessModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.NonAccessModifier;
+import api.recodecamp.compile_service.generate.components.modifier.helpers.NonPrimitiveDataTypeModifier;
 import api.recodecamp.compile_service.generate.components.modifier.helpers.PrimitiveDataTypeModifier;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,12 +25,12 @@ import lombok.Setter;
 * @author Jasmine Anderson
 * @version 1.0
 */
-public abstract class Modifier<T> {
+public abstract class Modifier {
 
     public AccessModifier accessModifier;
     public NonAccessModifier nonAccessModifier;
     public PrimitiveDataTypeModifier primitiveDataTypeModifier;
-    public T nonPrimitiveDataTypeModifier;
+    public Object nonPrimitiveDataTypeModifier;
     public Boolean nonPrimitiveDataTypeModifierDiamond;
     
     public Modifier(
@@ -45,7 +46,20 @@ public abstract class Modifier<T> {
     public Modifier(
         AccessModifier accessModifier,
         NonAccessModifier nonAccessModifier,
-        T nonPrimitiveDataTypeModifier,
+        NonPrimitiveDataTypeModifier nonPrimitiveDataTypeModifier,
+        Boolean nonPrimitiveDataTypeModifierDiamond
+    ) {
+        this.accessModifier = accessModifier;
+        this.nonAccessModifier = nonAccessModifier;
+        this.nonPrimitiveDataTypeModifier = nonPrimitiveDataTypeModifier;
+        this.nonPrimitiveDataTypeModifierDiamond = nonPrimitiveDataTypeModifierDiamond;
+        isDiamondPrimitive();
+    };
+
+    public Modifier(
+        AccessModifier accessModifier,
+        NonAccessModifier nonAccessModifier,
+        String nonPrimitiveDataTypeModifier,
         Boolean nonPrimitiveDataTypeModifierDiamond
     ) {
         this.accessModifier = accessModifier;
@@ -62,10 +76,15 @@ public abstract class Modifier<T> {
      */
     private void isDiamondPrimitive() {
         if (nonPrimitiveDataTypeModifierDiamond) {
-             boolean exists = Arrays.stream(PrimitiveDataTypeModifier.values())
-                .anyMatch(type -> type.name().equals(nonPrimitiveDataTypeModifier));
-            if (exists) {
+            boolean primitive = Arrays.stream(PrimitiveDataTypeModifier.values())
+                    .anyMatch(type -> type.name().equals(nonPrimitiveDataTypeModifier));
+            boolean nonPrimitive = Arrays.stream(NonPrimitiveDataTypeModifier.values())
+                .anyMatch(type -> type.name().toLowerCase().equals(nonPrimitiveDataTypeModifier.toString().toLowerCase()));
+            if (primitive) {
                 throw new IllegalArgumentException("Primitive data types not allowed for diamond operator");
+            }
+            if (nonPrimitive) {
+                throw new IllegalArgumentException("For non-custom class, non-primitive data types, use NonPrimitiveDataTypeModifier enum");
             }
         }
     };
